@@ -55,10 +55,12 @@ def rep_simplify(A):
 	return A
 
 def rep_product(A,B):
-	C = []
-	for i in range(len(A)):
-		for j in range(len(B)):
-			C.append(elem_product(A[i],B[j]))
+	len_a = len(A)
+	len_b = len(B)
+	C = len_a*len_b*[0]
+	for i in range(len_a):
+		for j in range(len_b):
+			C[j*len_a + i] = (elem_product(A[i],B[j]))
 
 	return rep_simplify(C)
 

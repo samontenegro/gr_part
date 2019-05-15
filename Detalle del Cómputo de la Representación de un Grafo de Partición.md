@@ -107,10 +107,10 @@ def elem_sum(A,B): #A y B arreglos de la forma [ [k_1,[a_11, a_12, ... , a_1n]],
 Para el producto $\ast$, definimos
 
 ```python
-def elem_product(A_part,B_part): #A_elem y B_elem elementos de la forma [k_1,[a_11, a_12, ... , a_1n]]
-	C_mult = A_part[0]*B_part[0]
-	C_part = [C_mult,A_part[1]+B_part[1]]
-	return C_part
+def elem_product(A_elem,B_elem): #A_elem y B_elem elementos de la forma [k_1,[a_11, a_12, ... , a_1n]]
+	C_scalar = A_elem[0]*B_elem[0]
+	C_elem = [C_scalar,A_elem[1]+B_elem[1]]
+	return C_elem
 ```
 
 Entonces, la función que calcula la representación del grafo de partición de $n$ puede ser escrita como
@@ -134,10 +134,12 @@ donde
 
 ```python
 def rep_product(A,B):
-	C = []
-	for i in range(len(A)):
-		for j in range(len(B)):
-			C.append(elem_product(A[i],B[j]))
+	len_a = len(A)
+	len_b = len(B)
+	C = len_a*len_b*[0]
+	for i in range(len_a):
+		for j in range(len_b):
+			C[j*len_a + i] = (elem_product(A[i],B[j]))
 
 	return rep_simplify(C)
 ```
